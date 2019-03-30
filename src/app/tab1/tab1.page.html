@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Feed
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<button ion-button (click)="presentPopover($ev)">OpenPopover</button>
+
+<ion-content>
+  <ion-card class="welcome-card" *ngFor= 'let article of topHeadline.articles'>
+    <a href="{{article.url}}">
+      <ion-img [src]="article.urlToImage"></ion-img>
+      <ion-card-header>
+        <ion-card-title>{{article.title}}</ion-card-title>
+        <p color="dark">{{article.description}}</p>
+      </ion-card-header>
+    </a>
+  </ion-card>
+</ion-content>
