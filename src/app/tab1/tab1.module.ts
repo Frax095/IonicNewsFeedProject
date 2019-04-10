@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-import { PopoverComponent } from './popover/popover.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { QComponent } from './q/q.component';
 
 @NgModule({
   imports: [
@@ -13,9 +14,11 @@ import { PopoverComponent } from './popover/popover.component';
     FormsModule,
     RouterModule.forChild([
       { path: '', component: Tab1Page },
-      { path: ':id', component: PopoverComponent }
+      { path: ':id', component: CategoriesComponent },
+      { path: ':magicWord', component: QComponent}
+      
     ])
   ],
-  declarations: [Tab1Page, PopoverComponent]
+  declarations: [Tab1Page, CategoriesComponent, QComponent]
 })
 export class Tab1PageModule {}

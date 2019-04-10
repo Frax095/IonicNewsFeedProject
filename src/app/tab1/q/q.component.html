@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      <ion-text color="light">{{q}}</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="start" edge slot="fixed">
+    <ion-fab-button [routerLink]="['/', 'tabs', 'tab1']" color="warning"><ion-icon name="arrow-dropleft-circle" color="dark"></ion-icon></ion-fab-button>
+  </ion-fab>
+  
+  <ion-card class="welcome-card" *ngFor= 'let article of topHeadline.articles'>
+    <a href="{{article.url}}">
+      <ion-img [src]="article.urlToImage"></ion-img>
+      <ion-card-header>
+        <ion-text color="dark"><h5>{{article.title}}</h5></ion-text>
+        <ion-text color="dark"><p>{{article.description}}</p></ion-text>
+        <p>{{article.source.name}}</p>
+      </ion-card-header>
+    </a>
+  </ion-card>
+
+  <!-- <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+      <ion-fab-button href='/tabs/tab1/id' color="warning"><ion-icon name="git-compare" color="dark"></ion-icon></ion-fab-button>
+  </ion-fab> -->
+
+</ion-content>

@@ -1,21 +1,42 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-title>
-      Feed
+      <ion-text color="dark">Zfeed</ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<button ion-button (click)="presentPopover($ev)">OpenPopover</button>
-
 <ion-content>
-  <ion-card class="welcome-card" *ngFor= 'let article of topHeadline.articles'>
-    <a href="{{article.url}}">
-      <ion-img [src]="article.urlToImage"></ion-img>
-      <ion-card-header>
-        <ion-card-title>{{article.title}}</ion-card-title>
-        <p color="dark">{{article.description}}</p>
-      </ion-card-header>
-    </a>
+  <ion-fab vertical="top" horizontal="start" edge slot="fixed">
+    <ion-fab-button color="dark"><ion-icon name="arrow-dropdown"></ion-icon></ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-button color="dark" (click)='set(category="technology")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="rocket" color="warning"></ion-icon><ion-label color="light">technology</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="sport")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="baseball" color="warning"></ion-icon><ion-label color="light">sport</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="business")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="podium" color="warning"></ion-icon><ion-label color="light">business</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="entertainment")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="contacts" color="warning"></ion-icon><ion-label color="light">gossip</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="general")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="albums" color="warning"></ion-icon><ion-label color="light">general</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="health")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="leaf" color="warning"></ion-icon><ion-label color="light">health</ion-label></ion-button>
+      <ion-button color="dark" (click)='set(category="science")' [routerLink]="['/', 'tabs', 'tab1', 'id']"><ion-icon name="planet" color="warning"></ion-icon><ion-label color="light">science</ion-label></ion-button>
+    </ion-fab-list>
+  </ion-fab>
+
+<!-- ANCORA SULLA RICERCA PER PAROLA CHIAVE C'E' DA LAVORARE -->
+  <ion-item>
+    <ion-input placeholder="Insert Magic Word" [(ngModel)]='q'></ion-input>
+    <ion-button (click)='setMagicWord()' [routerLink]="['/', 'tabs', 'tab1', 'magicWord']">Set</ion-button>
+  </ion-item>
+
+  <ion-card class="welcome-cardImg" (click)='openIab(url=article.url)' *ngFor= 'let article of topHeadline.articles'>
+    <ion-img [src]="article.urlToImage"></ion-img>
+    <ion-card-header class="textPointer">
+      <ion-text color="dark"><h5>{{article.title}}</h5></ion-text>
+      <ion-text color="dark"><p>{{article.description}}</p></ion-text>
+      <ion-text><p>{{article.source.name}}</p></ion-text>
+    </ion-card-header>
   </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+    <ion-fab-button href='/tabs/tab1' color="warning"><ion-icon name="git-compare" color="dark"></ion-icon></ion-fab-button>
+  </ion-fab>
+
 </ion-content>

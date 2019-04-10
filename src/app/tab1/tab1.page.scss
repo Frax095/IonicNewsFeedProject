@@ -1,4 +1,11 @@
-.welcome-card ion-img {
+.textPointer ion-text {
   max-height: 35vh;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.welcome-cardImg ion-img {
+  max-height: 35vh;
+  overflow: hidden;
+  cursor: pointer;
 }
