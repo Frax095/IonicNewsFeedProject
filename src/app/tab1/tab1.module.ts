@@ -14,9 +14,8 @@ import { QComponent } from './q/q.component';
     FormsModule,
     RouterModule.forChild([
       { path: '', component: Tab1Page },
-      { path: ':id', component: CategoriesComponent },
-      { path: ':magicWord', component: QComponent}
-      
+      { path: 'id', component: CategoriesComponent },
+      { path: 'magicWord', component: QComponent }
     ])
   ],
   declarations: [Tab1Page, CategoriesComponent, QComponent]

@@ -14,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   }
   public category
 
-  constructor(public feedService: FeedService, public iab1: InAppBrowser) { }
+  constructor(public feedService: FeedService, public iab: InAppBrowser) { }
 
   ngOnInit() {
     this.category = this.feedService.getCategory();
@@ -28,7 +28,7 @@ export class CategoriesComponent implements OnInit {
       toolbar: 'yes',
       location: 'yes'
     }
-    this.iab1.create(url, '_self', option);
+    this.iab.create(url, '_self', option);
   }
-
+  
 }
