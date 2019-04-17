@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedService, TopHeadline } from '../feed.service';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx'
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -15,13 +16,14 @@ export class Tab1Page implements OnInit {
   public category: string;
   public q: string;
 
-  constructor(public feedService: FeedService, public iab: InAppBrowser) {}
+  constructor(public feedService: FeedService, public iab: InAppBrowser, public toastController: ToastController) {}
 
   ngOnInit(){
     this.q = this.feedService.getQ();
     this.category = this.feedService.getCategory();
     this.feedService.all().then(response => {
       this.topHeadline = response;
+      this.resultOfSearch();
     });
   }
 
@@ -42,5 +44,21 @@ export class Tab1Page implements OnInit {
       location: 'yes'
     }
     this.iab.create(url, '_self', option);
+  }
+
+  resultOfSearch(){
+    if(this.topHeadline.articles.length == 0){
+      this.presentToast(`Non ci sono contenuti`);
+    } if (this.topHeadline.articles.length > 0) {
+      this.presentToast(`Ci sono ${this.topHeadline.articles.length} contenuti`);
+    }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000
+    });
+    toast.present();
   }
 }
